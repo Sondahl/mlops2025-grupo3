@@ -1,0 +1,49 @@
+version: '3'
+services:
+  serving01:
+    image: platserver
+    container_name: serving01
+    command: python servingmodel.py models/modelo01.joblib
+    restart: "always"
+    networks: 
+      plat_network:
+    volumes:
+      - ./models:/myServer/models
+  serving02:
+    image: platserver
+    container_name: serving02
+    command: python servingmodel.py models/modelo01.joblib
+    restart: "always"
+    networks: 
+      plat_network:
+    volumes:
+      - ./models:/myServer/models
+  serving01:
+    image: platserver
+    container_name: serving01
+    command: python servingmodel.py models/modelo02.joblib
+    restart: "always"
+    networks: 
+      plat_network:
+    volumes:
+      - ./models:/myServer/models
+  modelmanager:
+    image: platserver
+    container_name: modelmanager
+    command: python modelmanager.py
+    restart: "always"
+    networks: 
+      plat_network:
+    volumes:
+      - ./config:/myServer/config
+      - ./Log:/myServer/Log
+    expose:
+      - 8080
+    ports:
+      - 443:8080
+
+networks:
+  plat_network:
+    name: plat_network
+    external:
+      name: plat_network
