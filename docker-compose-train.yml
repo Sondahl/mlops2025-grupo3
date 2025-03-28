@@ -10,6 +10,9 @@ services:
     volumes:
       - ./models:/myServer/models
       - ./train_model.py:/myServer/train_model.py
+      - ./.env:/myServer/.env
+      - ./modelo:/myServer/modelo
+      - ./dadostreino:/myServer/dadostreino
 
 networks:
   plat_network:

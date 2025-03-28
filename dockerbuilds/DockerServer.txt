@@ -19,6 +19,7 @@ WORKDIR /myServer
 # Instala pacotes Python
 RUN pip install --upgrade pip
 RUN pip install -r /myServer/requirements.txt
+RUN pip install -r /myServer/requirements_azure.txt
 
 # Expõe alguns diretórios para o HOST
 VOLUME /myServer/config
