@@ -1,0 +1,18 @@
+version: '3'
+services:
+  train_model:
+    image: platserver
+    container_name: train_model
+    command: python train_model.py
+    restart: "no"
+    networks: 
+      plat_network:
+    volumes:
+      - ./models:/myServer/models
+      - ./train_model.py:/myServer/train_model.py
+
+networks:
+  plat_network:
+    name: plat_network
+    external:
+      name: plat_network
